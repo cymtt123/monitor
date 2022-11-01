@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="https://smtpjs.com/v2/smtp.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		var result;
+		function btnClick(){
+			console.log("start!")
+			setInterval(function (){
+				fetch("http://vdb.vandenbergchina.com/ItemApi/lists?sid=8010056&title=%E7%9B%B2%E7%9B%92&p=1&supplier=32294&pid=35779671").then(res=>res.json()).then(data=>result = data.data.lists.length);
+				console.log(result);
+				if(result){
+					Email.send(
+					    "ctu555_app@163.com",
+					    "369044974@qq.com",
+					    "鲜花提示买买买",
+					    "鲜花",
+					    "smtp.163.com",
+					    "ctu555_app",
+					    "OQXOEXUMFFCVAPTD"
+					)
+					return 1;
+				}
+			}, 30000)
+		}
+
+		window.onload = function(){
+			btnClick();
+			setTimeout(btnClick,900000);
+		}
+
+
+		// async function btnStop(){
+		// 	flag = !flag;
+		// 	console.log(flag);
+		// }
+	</script>
+	<!-- <button onclick="btnClick()">start monito --><!-- ring</button>
+	<button onclick="btnStop()">stop</button> -->
+</body>
+
+
+</html>
